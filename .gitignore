@@ -1,0 +1,13 @@
+#IDE
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/tasks.xml
+
+# dotenv
+.env
+
+# legacy PHP script
+script/
+
+# dependencies
+node_modules

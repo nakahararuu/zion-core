@@ -1,0 +1,46 @@
+version: '3'
+services:
+  web_core:
+    image: nakahararuu/zion_resource
+    environment:
+      - CADDYPATH=/etc/caddycerts
+      - HOST_NAME=${HOST_NAME}
+      - JWT_SECRET=${JWT_SECRET}
+    volumes:
+      - ./test_data:/srv
+      - ./Caddyfile:/etc/Caddyfile
+      - $HOME/.caddy:/etc/caddycerts
+    ports:
+      - '2015:2015'
+    restart: always
+  backend:
+    image: 'node:8'
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./test_data/:/home/node/app
+    expose:
+      - '8000'
+    command: 'npx json-server --watch --static ./ --host 0.0.0.0 --port 8000 ./db.json'
+    restart: always
+  auth:
+    image: tarent/loginsrv
+    expose:
+      - '8080'
+    command: "-jwt-secret ${JWT_SECRET} -simple ${USER_NAME}=${PASSWORD}"
+    restart: always
+  auth_dummy:
+    image: 'node:8'
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./test_data/auth_api:/home/node/app
+    expose:
+      - '3000'
+    command: bash -c "npm install && npm start"
+    restart: always
+

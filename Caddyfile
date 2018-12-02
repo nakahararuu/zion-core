@@ -1,0 +1,21 @@
+{$HOST_NAME} {
+  ## movie
+  jwt {
+    path /movie
+    redirect /login
+  }
+
+  ## Backend API
+  proxy /json backend:8000 {
+    without /json
+  }
+  jwt {
+    path /json
+    redirect /login
+  }
+
+  ## auth
+  proxy /login auth:8080
+  proxy /user auth_dummy:3000 ## for Zion-surface https://github.com/nuxt-community/auth-module/issues/213
+}
+
