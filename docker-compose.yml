@@ -7,7 +7,7 @@ services:
       - HOST_NAME=${HOST_NAME}
       - JWT_SECRET=${JWT_SECRET}
     volumes:
-      - ./test_data:/srv
+      - ${MOVIES_DIR}:/srv
       - ./Caddyfile:/etc/Caddyfile
       - $HOME/.caddy:/etc/caddycerts
     ports:
