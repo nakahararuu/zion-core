@@ -6,7 +6,7 @@
   }
 
   ## Backend API
-  proxy /json backend:8000 {
+  proxy /json {$BACKEND_URL} {
     without /json
   }
   jwt {
