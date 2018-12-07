@@ -8,7 +8,7 @@ services:
       - JWT_SECRET=${JWT_SECRET}
       - BACKEND_URL=${BACKEND_URL}
     volumes:
-      - ./test_data:/srv
+      - ${MOVIES_DIR}:/srv/movie
       - ./Caddyfile:/etc/Caddyfile
       - $HOME/.caddy:/etc/caddycerts
     ports:
