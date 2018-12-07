@@ -6,6 +6,7 @@ services:
       - CADDYPATH=/etc/caddycerts
       - HOST_NAME=${HOST_NAME}
       - JWT_SECRET=${JWT_SECRET}
+      - BACKEND_URL=${BACKEND_URL}
     volumes:
       - ./test_data:/srv
       - ./Caddyfile:/etc/Caddyfile
