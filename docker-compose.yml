@@ -6,7 +6,7 @@ services:
       - CADDYPATH=/etc/caddycerts
       - HOST_NAME=${HOST_NAME}
       - JWT_SECRET=${JWT_SECRET}
-      - BACKEND_URL=${BACKEND_URL}
+      - BACKEND_BASE_URL=${BACKEND_BASE_URL}
     volumes:
       - ${MOVIES_DIR}:/srv/movie
       - ./Caddyfile:/etc/Caddyfile
@@ -23,10 +23,10 @@ services:
     environment:
       - NODE_ENV=development
     volumes:
-      - ./test_data/:/home/node/app
+      - ./test_data/backend_api:/home/node/app
     expose:
       - '8000'
-    command: 'npx json-server --watch --static ./ --host 0.0.0.0 --port 8000 ./db.json'
+    command: 'npx json-server --watch --host 0.0.0.0 --port 8000 ./db.json --routes ./routes.json'
     restart: always
   auth:
     image: tarent/loginsrv
