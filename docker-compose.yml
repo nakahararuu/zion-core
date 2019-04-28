@@ -13,8 +13,8 @@ services:
       - $HOME/.caddy:/etc/caddycerts
     ports:
       - '${DEV_HTTP_PORT}:2015'
-      - '${HTTP_PORT}:443'
-      - '${HTTPS_PORT}:80'
+      - '${HTTPS_PORT}:443'
+      - '${HTTP_PORT}:80'
     restart: always
   backend:
     image: 'node:8'
