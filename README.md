@@ -1,8 +1,6 @@
 # Zion-Core
 
-a backend for ちゃアニ. REST API, authentication, and static resource hosting.
-
-Note: Currently, Zion-Core is PoC project. it's using legacy ちゃアニ PHP scripts as REST API. We need to replace legacy it.
+a wrapper application for ちゃアニ. REST API, authentication, and static resource hosting.
 
 ## Build Setup
 ``` bash
@@ -14,9 +12,6 @@ $ docker-compose up
 # (http://example.xyz:80 points to https://example.xyz:443)
 $ cp .env.default .env
 $ vim .env
-$ head -2 .env
-# Web Server config
-HOST_NAME=example.xyz
 $ docker-compose up
 ```
 
